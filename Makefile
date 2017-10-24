@@ -1,6 +1,7 @@
 .PHONY: all clean install
 FREESTANDING_LIBS=build/openlibm/libopenlibm.a \
 		  build/ocaml/asmrun/libasmrun.a \
+		  build/ocaml/asmrun/libasmrun_pic.a \
 		  build/ocaml/otherlibs/libotherlibs.a \
 		  build/nolibc/libnolibc.a
 
@@ -42,6 +43,15 @@ build/ocaml/asmrun/libasmrun.a: build/ocaml/config/Makefile build/openlibm/Makef
 	    NATIVECCCOMPOPTS="$(OCAML_CFLAGS)" \
 	    NATIVECCPROFOPTS="$(OCAML_CFLAGS)" \
 	    libasmrun.a
+
+build/ocaml/asmrun/libasmrun_pic.a: build/ocaml/config/Makefile build/openlibm/Makefile $(OCAML_EXTRA_DEPS)
+	$(MAKE) -C build/ocaml/asmrun \
+	    UNIX_OR_WIN32=unix \
+	    NATIVECCCOMPOPTS="$(OCAML_CFLAGS)" \
+	    NATIVECCPROFOPTS="$(OCAML_CFLAGS)" \
+	    libasmrun_pic.a
+
+
 
 build/ocaml/otherlibs/libotherlibs.a: build/ocaml/config/Makefile
 	$(MAKE) -C build/ocaml/otherlibs/bigarray \

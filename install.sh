@@ -30,7 +30,8 @@ mkdir -p ${DESTINC}/caml
 	sed -f ../tools/cleanup-header caml/${f} >${DESTINC}/caml/${f}
     done
 )
-cp build/ocaml/asmrun/libasmrun.a ${DESTLIB}/libasmrun.a
+#cp build/ocaml/asmrun/libasmrun.a ${DESTLIB}/libasmrun.a
+cp build/ocaml/asmrun/libasmrun_pic.a ${DESTLIB}/libasmrun.a
 # OCaml "otherlibs"
 cp build/ocaml/otherlibs/bigarray/bigarray.h ${DESTINC}/caml/bigarray.h
 cp build/ocaml/otherlibs/libotherlibs.a ${DESTLIB}/libotherlibs.a
